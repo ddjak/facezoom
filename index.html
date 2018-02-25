@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FaceZoom</title>
+	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+	<meta charset=utf-8 />
+<style type="text/css">
+	article, aside, figure, footer, header, hgroup, 
+  menu, nav, section { display: block; }
+  img {max-width:100%; height:auto; -webkit-animation: zoomin 20s 1;}
+  @-webkit-keyframes zoomin {
+    0% {
+        -webkit-transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(2);
+    }
+}
+</style>
+</head>
+<body>
+	<h1 style="text-align:center">Drag Your Face Here and See What Happens</h1>
+
+	    <input type='file' onchange="readURL(this);" />
+		<img id="pic" src="#" alt="image here" />
+
+<script type="text/javascript">
+	var audio = new Audio("whisper.mp3");
+	$("img").hide();
+	function readURL(input) {
+		$("img").show();
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#pic')
+                        .attr('src', e.target.result)
+                };
+
+                reader.readAsDataURL(input.files[0]);
+                audio.play();
+            }
+        }
+</script>
+</body>
+</html>
